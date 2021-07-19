@@ -1,0 +1,37 @@
+#heading,
+#heading_cart {
+  width: 96%;
+  height: 100px;
+  background-color: bisque;
+  text-align: left;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  color: rgb(195, 0, 255);
+  padding: 2%;
+}
+#products,
+#cart {
+  display: grid;
+  grid-template-columns: repeat(4, 20%);
+  grid-gap: 5%;
+  margin: 3%;
+}
+
+#products img {
+  width: 80%;
+  height: 200px;
+  object-fit: fill;
+}
+
+#cart img {
+  width: 80%;
+  height: 200px;
+  object-fit: fill;
+}
+
+#cart div {
+  display: grid;
+  justify-items: center;
+}
