@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <title>
+Movie Search Engine 1
+    </title>
+    <head>
+        <style>
+            .container {
+                width: 30%;
+                height: 300px;
+                margin: auto;
+                border: 1px solid white;
+                background-color: #334366;
+                color: white;
+            }
+
+            .container input {
+                margin: 5% 2%;
+                border-bottom: 1px solid black !important;
+                border: none;
+            }
+            label {
+                margin: 5%;
+            }
+
+            button{
+                margin: 10% 40%;
+            }
+
+            #data {
+                /* visibility: hidden; */
+                margin: auto;
+                border: 1px solid black;
+                background-color: #334366;
+                width: 30%;
+                height: max-content;
+                color: white;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class='container'>
+            <label>Enter Movie Name</label>
+            <input type="text" placeholder="Enter Movie Name" id='m1'/><br>
+            <label>Enter Release Year</label>
+            <input type="text" placeholder="Enter Release Year" id='y1' /><br>
+            <button onclick="getMovie()">Search</button>
+        </div>
+        <div id='data'>
+
+        </div>
+
+    </body>
+</html>
+<script>
+
+    async function getMovie () {
+        let movie = document.getElementById('m1').value;
+        let year = document.getElementById('y1').value;
+        let movie_details = document.getElementById('data')
+        movie_details.innerHTML=null;
+        try{
+
+            let res = await fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=e241138c&t=${movie}&y=${year}`)
+
+            let data = await res.json()
+            console.log(data)
+            let div = document.createElement('div');
+            
+            let title = document.createElement('p');
+            title.textContent = data.Title;
+            let year1 = document.createElement('p');
+            year1.textContent = data.Year;
+            let rated = document.createElement('p');
+            rated.textContent = data.Rated;
+            let released = document.createElement('p');
+            released.textContent = data.Released;
+            let runtime = document.createElement('p');
+            runtime.textContent = data.Runtime;
+            let genre = document.createElement('p');
+            genre.textContent = data.Genre;
+            let director = document.createElement('p');
+            director.textContent = data.Director;
+            let writer= document.createElement('p');
+            writer.textContent = data.Writer;
+            let actors = document.createElement('p');
+            actors.textContent = data.Actors;
+
+            div.append(`Movie Name :`,title,'Movie Year :',year1,'Rating:',rated,'Release Date:',
+            released,'Runtime:',runtime,'Genre:',genre,'Director:',director,'Writer:',writer,'Actors:',actors)
+            movie_details.append(div)
+           // console.log(data.Title,data.Released)
+        } catch (err){
+            console.log('err:',err)
+
+
+        }
+    }
+
+</script>
